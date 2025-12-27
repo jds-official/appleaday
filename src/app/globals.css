@@ -24,30 +24,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-.sweetness {
-  transform: translateY(-4px);
-}
-
-.crunchiness {
-  transform: rotate(57deg) translateX(-134px) translateY(-11px);
-  transform-origin: center;
-}
-
-.vibes {
-  transform: rotate(-59deg) translateX(-52px) translateY(42px);
-  transform-origin: center;
-}
-
-.durability {
-  transform: translateY(-10px);
-}
-
-.crispiness {
-  transform: rotate(56deg) translateX(93.5px) translateY(124px);
-  transform-origin: center;
-}
-
-.appleal {
-  transform: rotate(-53deg) translateX(-72.5px) translateY(-14px);
-}

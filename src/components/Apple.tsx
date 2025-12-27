@@ -139,48 +139,55 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
             strokeWidth="3"
             strokeLinejoin="round"
           />
-
           {/* Stat labels */}
           {statOrder.map((key, i) => {
             const angle = ((Math.PI * 2) / 6) * i - Math.PI / 2;
             const x = 150 + 140 * Math.cos(angle);
             const y = 150 + 140 * Math.sin(angle);
-
             const isBottomHalf = Math.sin(angle) > 0;
 
+            // Only rotate top half labels
+            const rotationAngle = !isBottomHalf
+              ? (angle * 180) / Math.PI + 90
+              : (angle * 180) / Math.PI + -90;
             return (
-              <text
-                key={key}
-                x={x}
-                y={y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className={`${stats[
-                  key
-                ].label.toLowerCase()} text-sm font-semibold fill-slate-700`}
-              >
-                {isBottomHalf ? (
-                  // Bottom: rank first, then label
-                  <>
-                    <tspan x={x} dy="0">
-                      {stats[key].rank}
-                    </tspan>
-                    <tspan x={x} dy="1.2em">
-                      {stats[key].label}
-                    </tspan>
-                  </>
-                ) : (
-                  // Top: label first, then rank
-                  <>
-                    <tspan x={x} dy="0">
-                      {stats[key].label}
-                    </tspan>
-                    <tspan x={x} dy="1.2em">
-                      {stats[key].rank}
-                    </tspan>
-                  </>
-                )}{' '}
-              </text>
+              <g key={key} transform={`rotate(${rotationAngle}, ${x}, ${y})`}>
+                {/* Label */}
+                <text
+                  x={x}
+                  y={isBottomHalf ? y + 25 : y - 15}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className={`${stats[
+                    key
+                  ].label.toLowerCase()} text-sm font-semibold fill-slate-700`}
+                >
+                  {stats[key].label}
+                </text>
+
+                {/* Apple emoji */}
+                <text
+                  x={x}
+                  y={isBottomHalf ? y - 5 : y + 15}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className={`text-4xl`}
+                >
+                  🍎
+                </text>
+
+                {/* Rank on apple */}
+                <text
+                  x={x}
+                  y={isBottomHalf ? y - 5 : y + 15}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="text-sm font-bold fill-white"
+                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))' }}
+                >
+                  {stats[key].rank}
+                </text>
+              </g>
             );
           })}
         </svg>
@@ -205,7 +212,7 @@ export default function App() {
       <AppleStatsChart
         appleName="Honeycrisp"
         stats={honeycrispStats}
-        accentColor="#ec2d"
+        accentColor="#ec1d25"
       />
     </div>
   );
