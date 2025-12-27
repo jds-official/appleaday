@@ -78,14 +78,9 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
         {appleName}
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-8 items-center">
+      <div className="flex flex-col md:flex-row gap-8 items-center w-[50vw]">
         {/* Hexagonal Chart */}
-        <svg
-          width="600"
-          height="600"
-          viewBox="-50 -50 400 400"
-          className="shrink-0"
-        >
+        <svg viewBox="-50 -50 400 400" className="w-full h-auto shrink-0">
           {/* Grid lines */}
           {[1, 2, 3, 4, 5, 6].map((level) => {
             const points = getHexagonPoints(Array(6).fill(level));
