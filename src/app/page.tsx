@@ -3,59 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import Apple from '@/components/Apple';
-import type { StatRank } from '@/components/Apple';
 import Calendar, { AppleDay } from '@/components/Calendar';
 import { getApples } from '@/sanity/lib/sanity';
-
-// Hardcoded apple data - structured for easy Contentful migration
-const APPLE_DATA: AppleDay[] = [
-  {
-    date: '2026-01-01',
-    appleName: 'Honeycrisp',
-    slug: 'honeycrisp',
-    stats: {
-      crunchiness: 'S' as StatRank,
-      sweetness: 'A' as StatRank,
-      durability: 'C' as StatRank,
-      crispiness: 'A' as StatRank,
-      vibes: 'E' as StatRank,
-      appleal: 'A' as StatRank,
-    },
-    description:
-      'The Honeycrisp apple is known for its exceptional crunchiness and balanced sweet-tart flavor.',
-  },
-  {
-    date: '2026-01-02',
-    appleName: 'Fuji',
-    slug: 'fuji',
-    stats: {
-      crunchiness: 'A' as StatRank,
-      sweetness: 'S' as StatRank,
-      durability: 'B' as StatRank,
-      crispiness: 'B' as StatRank,
-      vibes: 'A' as StatRank,
-      appleal: 'S' as StatRank,
-    },
-    description:
-      'Fuji apples are incredibly sweet and crisp, making them perfect for snacking.',
-  },
-  {
-    date: '2026-01-15',
-    appleName: 'Granny Smith',
-    slug: 'granny-smith',
-    stats: {
-      crunchiness: 'S' as StatRank,
-      sweetness: 'D' as StatRank,
-      durability: 'A' as StatRank,
-      crispiness: 'S' as StatRank,
-      vibes: 'B' as StatRank,
-      appleal: 'B' as StatRank,
-    },
-    description:
-      'Tart and crisp, Granny Smith apples are excellent for baking and add a nice contrast to sweet dishes.',
-  },
-  // Add more days here...
-];
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<string>('2026-01-01'); // Default to Jan 1
@@ -83,10 +32,24 @@ export default function Home() {
 
   // Find the apple data for the selected date
   const currentApple = appleData.find((apple) => apple.date === selectedDate);
+  const displayDate = (dateString: string) => {
+    const [year, month, day] = dateString.split('-');
+    return `${month}/${day}/${year}`;
+  };
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-xl text-slate-600">Loading apples...</div>
+      </div>
+    );
+  }
+  if (appleData.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center flex-col">
+        <h1 className="text-4xl font-bold mb-8">
+          An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
+        </h1>
+        <div className="text-xl text-slate-600">COMING SOON.</div>
       </div>
     );
   }
@@ -99,7 +62,7 @@ export default function Home() {
           </h1>
         </div>
         <Calendar
-          appleData={APPLE_DATA}
+          appleData={appleData}
           currentDate={selectedDate}
           onDateSelect={setSelectedDate}
         />
@@ -107,7 +70,7 @@ export default function Home() {
         {currentApple && (
           <Apple
             appleName={currentApple.appleName}
-            appleDate={currentApple.date}
+            appleDate={displayDate(currentApple.date)}
             stats={currentApple.stats}
             description={currentApple.description}
           />
