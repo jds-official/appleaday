@@ -4,20 +4,15 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // TypeScript types
-type StatRank = 'E' | 'D' | 'C' | 'B' | 'A' | 'S';
+export type StatRank = 'E' | 'D' | 'C' | 'B' | 'A' | 'S';
 
-interface AppleStat {
-  label: string;
-  rank: StatRank;
-}
-
-interface AppleStats {
-  crunchiness: AppleStat;
-  sweetness: AppleStat;
-  durability: AppleStat;
-  crispiness: AppleStat;
-  vibes: AppleStat;
-  appleal: AppleStat;
+export interface AppleStats {
+  crunchiness: StatRank;
+  sweetness: StatRank;
+  durability: StatRank;
+  crispiness: StatRank;
+  vibes: StatRank;
+  appleal: StatRank;
 }
 
 interface AppleStatsChartProps {
@@ -60,10 +55,8 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
     // ANIMATION TIMING CONFIG:
     const animationDuration = 1000; // Change this to make animation faster (lower) or slower (higher) in milliseconds
     const animationDelay = 300; // Change this to delay the start of animation in milliseconds
-    const frameRate = 60; // Frames per second - higher = smoother but more CPU intensive
 
     const startTime = Date.now() + animationDelay;
-    const interval = 1000 / frameRate;
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
@@ -88,7 +81,6 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
     const timer = setTimeout(animate, animationDelay);
     return () => clearTimeout(timer);
   }, [stats]); // Re-animate when stats change
-
   // Calculate hexagon points for the stat overlay
   const getHexagonPoints = (values: number[]): string => {
     const centerX = 150;
@@ -111,7 +103,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   const basePoints = getHexagonPoints([6, 6, 6, 6, 6, 6]);
 
   // Get stat values for the filled polygon
-  const statValues = statOrder.map((key) => rankToValue[stats[key].rank]);
+  const statValues = statOrder.map((key) => rankToValue[stats[key]]);
 
   // Apply animation progress to stat values
   // This multiplies each stat by the animation progress (0 to 1)
@@ -208,11 +200,9 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                     y={isBottomHalf ? y + 25 : y - 15}
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    className={`${stats[
-                      key
-                    ].label.toLowerCase()} text-sm font-semibold fill-slate-700`}
+                    className={`${key} text-sm font-semibold fill-slate-700 capitalize`}
                   >
-                    {stats[key].label}
+                    {key}
                   </text>
 
                   {/* Apple emoji */}
@@ -235,7 +225,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                     className="text-sm font-bold fill-white"
                     style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))' }}
                   >
-                    {stats[key].rank}
+                    {stats[key]}
                   </text>
                 </g>
               );
@@ -266,28 +256,4 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   );
 };
 
-// Example usage with hardcoded data
-export default function App() {
-  const cosmiccrispStats: AppleStats = {
-    crunchiness: { label: 'Crunchiness', rank: 'S' },
-    sweetness: { label: 'Sweetness', rank: 'A' },
-    durability: { label: 'Durability', rank: 'C' },
-    crispiness: { label: 'Crispiness', rank: 'A' },
-    vibes: { label: 'Vibes', rank: 'E' },
-    appleal: { label: 'Appleal', rank: 'A' },
-  };
-
-  // Use a template literal for multi-line description
-  const appleDescription = `This apple tasted good and the crispiness was out of this world. A high bar has been set and this will be a tough act to follow.`;
-
-  return (
-    <div className="min-h-screen p-8 flex items-center justify-center">
-      <AppleStatsChart
-        appleName="Cosmic Crisp"
-        stats={cosmiccrispStats}
-        accentColor="#ec1d25"
-        description={appleDescription}
-      />
-    </div>
-  );
-}
+export default AppleStatsChart;

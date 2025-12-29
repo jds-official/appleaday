@@ -1,20 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import type { AppleStats } from './Apple';
 
 // TypeScript types for apple calendar data
 export type AppleDay = {
   date: string; // Format: 'YYYY-MM-DD' (e.g., '2026-01-01')
   appleName: string;
   slug: string; // URL-friendly version (e.g., 'honeycrisp')
-  stats?: {
-    crunchiness: string;
-    sweetness: string;
-    durability: string;
-    crispiness: string;
-    vibes: string;
-    appleal: string;
-  };
+  stats: AppleStats;
   description?: string;
   imageUrl?: string;
 };
