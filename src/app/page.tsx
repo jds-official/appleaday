@@ -65,6 +65,11 @@ export default function Home() {
   return (
     <div>
       <main>
+        <div className="text-center my-8">
+          <h1 className="text-4xl font-bold">
+            An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
+          </h1>
+        </div>
         <Calendar
           appleData={APPLE_DATA}
           currentDate={selectedDate}
@@ -74,6 +79,7 @@ export default function Home() {
         {currentApple && (
           <Apple
             appleName={currentApple.appleName}
+            appleDate={currentApple.date}
             stats={currentApple.stats}
             description={currentApple.description}
           />

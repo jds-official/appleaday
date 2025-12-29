@@ -17,6 +17,7 @@ export interface AppleStats {
 
 interface AppleStatsChartProps {
   appleName: string;
+  appleDate: string;
   stats: AppleStats;
   accentColor?: string;
   description?: string; // Optional text blurb
@@ -34,6 +35,7 @@ const rankToValue: Record<StatRank, number> = {
 
 const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   appleName,
+  appleDate,
   stats,
   accentColor = '#ef4444',
   description, // Add description prop
@@ -114,8 +116,8 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold text-slate-800 text-center mb-8">
-        {appleName}
+      <h2 className="text-3xl font-bold text-slate-800 text-center mt-6 mb-6">
+        {appleName} – {appleDate}
       </h2>
 
       <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
@@ -197,7 +199,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   {/* Label */}
                   <text
                     x={x}
-                    y={isBottomHalf ? y + 25 : y - 15}
+                    y={isBottomHalf ? y + 25 : y - 20}
                     textAnchor="middle"
                     dominantBaseline="middle"
                     className={`${key} text-sm font-semibold fill-slate-700 capitalize`}
@@ -208,7 +210,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   {/* Apple emoji */}
                   <text
                     x={x}
-                    y={isBottomHalf ? y - 5 : y + 15}
+                    y={isBottomHalf ? y - 5 : y + 10}
                     textAnchor="middle"
                     dominantBaseline="middle"
                     className={`text-4xl`}
@@ -219,7 +221,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   {/* Rank on apple */}
                   <text
                     x={x}
-                    y={isBottomHalf ? y - 5 : y + 15}
+                    y={isBottomHalf ? y - 5 : y + 10}
                     textAnchor="middle"
                     dominantBaseline="middle"
                     className="text-sm font-bold fill-white"
