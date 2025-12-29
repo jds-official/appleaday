@@ -1,10 +1,11 @@
 // src/app/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Apple from '@/components/Apple';
 import type { StatRank } from '@/components/Apple';
 import Calendar, { AppleDay } from '@/components/Calendar';
+import { getApples } from '@/sanity/lib/sanity';
 
 // Hardcoded apple data - structured for easy Contentful migration
 const APPLE_DATA: AppleDay[] = [
@@ -58,10 +59,37 @@ const APPLE_DATA: AppleDay[] = [
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<string>('2026-01-01'); // Default to Jan 1
+  const [appleData, setAppleData] = useState<AppleDay[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchApples() {
+      try {
+        const apples = await getApples();
+        setAppleData(apples);
+
+        // Set first apple as default if available
+        if (apples.length > 0) {
+          setSelectedDate(apples[0].date);
+        }
+      } catch (error) {
+        console.error('Error fetching apples:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchApples();
+  }, []);
 
   // Find the apple data for the selected date
-  const currentApple = APPLE_DATA.find((apple) => apple.date === selectedDate);
-
+  const currentApple = appleData.find((apple) => apple.date === selectedDate);
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-slate-600">Loading apples...</div>
+      </div>
+    );
+  }
   return (
     <div>
       <main>
