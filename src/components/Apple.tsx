@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
 
 // TypeScript types
 export type StatRank = 'E' | 'D' | 'C' | 'B' | 'A' | 'S';
@@ -21,6 +22,7 @@ interface AppleStatsChartProps {
   stats: AppleStats;
   accentColor?: string;
   description?: string;
+  imageUrl?: string;
 }
 
 // Rank to numeric value mapping for visualization
@@ -39,6 +41,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   stats,
   accentColor = '#ef4444',
   description,
+  imageUrl,
 }) => {
   // Animation state: starts at 0, grows to 1
   const [animationProgress, setAnimationProgress] = useState(0);
@@ -240,13 +243,15 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
           <div className="w-full lg:w-1/4">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <p className="text-slate-700 font-bold leading-relaxed whitespace-pre-line">
-                <Image
-                  className="mx-auto"
-                  src="/apples/cosmic-crisp.png"
-                  alt={`Image of ${appleName} apple`}
-                  width={300}
-                  height={300}
-                />
+                {imageUrl && (
+                  <Image
+                    className="mx-auto"
+                    src={urlFor(imageUrl).width(300).quality(75).url()}
+                    alt={`Image of ${appleName} apple`}
+                    width={300}
+                    height={300}
+                  />
+                )}
                 {description}
               </p>
             </div>

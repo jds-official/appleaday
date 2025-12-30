@@ -73,6 +73,7 @@ export default function Home() {
             appleDate={displayDate(currentApple.date)}
             stats={currentApple.stats}
             description={currentApple.description}
+            imageUrl={currentApple.imageUrl}
           />
         )}
       </main>
