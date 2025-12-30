@@ -242,9 +242,8 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
               <p className="text-slate-700 font-bold leading-relaxed whitespace-pre-line">
                 <Image
                   className="mx-auto"
-                  style={{ animationDelay: '2.5s' }}
                   src="/apples/cosmic-crisp.png"
-                  alt="Apple Name"
+                  alt={`Image of ${appleName} apple`}
                   width={300}
                   height={300}
                 />

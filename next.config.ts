@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'appleaday.vercel.app',
+        port: '',
+        pathname: '/**',
+      },
+
     ],
   },
 }
