@@ -7,7 +7,7 @@ import Calendar, { AppleDay } from '@/components/Calendar';
 import { getApples } from '@/sanity/lib/sanity';
 
 export default function Home() {
-  const [selectedDate, setSelectedDate] = useState<string>('2026-01-01'); // Default to Jan 1
+  const [selectedDate, setSelectedDate] = useState<string>('2026-01-01');
   const [appleData, setAppleData] = useState<AppleDay[]>([]);
   const [loading, setLoading] = useState(true);
 

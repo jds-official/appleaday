@@ -20,7 +20,7 @@ interface AppleStatsChartProps {
   appleDate: string;
   stats: AppleStats;
   accentColor?: string;
-  description?: string; // Optional text blurb
+  description?: string;
 }
 
 // Rank to numeric value mapping for visualization
@@ -38,7 +38,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   appleDate,
   stats,
   accentColor = '#ef4444',
-  description, // Add description prop
+  description,
 }) => {
   // Animation state: starts at 0, grows to 1
   const [animationProgress, setAnimationProgress] = useState(0);
@@ -82,7 +82,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
 
     const timer = setTimeout(animate, animationDelay);
     return () => clearTimeout(timer);
-  }, [stats]); // Re-animate when stats change
+  }, [stats]);
   // Calculate hexagon points for the stat overlay
   const getHexagonPoints = (values: number[]): string => {
     const centerX = 150;
