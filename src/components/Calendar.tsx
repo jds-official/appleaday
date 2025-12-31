@@ -93,6 +93,12 @@ const Calendar: React.FC<CalendarProps> = ({
     }
   };
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isExpanded) {
+      setIsExpanded(false);
+    }
+  });
+
   return (
     <>
       {/* Calendar Icon - Fixed in top-right corner */}
