@@ -35,9 +35,6 @@ export const appleType = defineType({
       options: {
         disableAlpha: true, // Remove transparency option
       },
-      initialValue: {
-        hex: '#ec1d25', // Default red
-      },
     }),
     defineField({
       name: 'description',
