@@ -10,7 +10,7 @@ export type StatRank = 'E' | 'D' | 'C' | 'B' | 'A' | 'S';
 export interface AppleStats {
   crunchiness: StatRank;
   sweetness: StatRank;
-  durability: StatRank;
+  tartness: StatRank;
   crispiness: StatRank;
   vibes: StatRank;
   appleal: StatRank;
@@ -50,7 +50,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
     'sweetness',
     'crunchiness',
     'vibes',
-    'durability',
+    'tartness',
     'crispiness',
     'appleal',
   ];

@@ -76,8 +76,8 @@ export const appleType = defineType({
           initialValue: 'C',
         },
         {
-          name: 'durability',
-          title: 'Durability',
+          name: 'tartness',
+          title: 'Tartness',
           type: 'string',
           options: {
             list: ['E', 'D', 'C', 'B', 'A', 'S'],
