@@ -31,12 +31,15 @@ const Calendar: React.FC<CalendarProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Convert array to lookup object for quick access
-  const appleByDate = appleData.reduce((acc, apple) => {
-    // Extract MM-DD from YYYY-MM-DD
-    const monthDay = apple.date.slice(5); // Gets '01-15' from '2026-01-15'
-    acc[monthDay] = apple;
-    return acc;
-  }, {} as Record<string, AppleDay>);
+  const appleByDate = appleData.reduce(
+    (acc, apple) => {
+      // Extract MM-DD from YYYY-MM-DD
+      const monthDay = apple.date.slice(5); // Gets '01-15' from '2026-01-15'
+      acc[monthDay] = apple;
+      return acc;
+    },
+    {} as Record<string, AppleDay>
+  );
 
   // Generate January 2026 calendar
   const generateCalendar = () => {
@@ -130,7 +133,7 @@ const Calendar: React.FC<CalendarProps> = ({
             {/* Close button */}
             <button
               onClick={() => setIsExpanded(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
+              className="absolute top-4 right-4 text-slate-400 hover:text-black"
               aria-label="Close Calendar"
             >
               <svg
@@ -150,7 +153,7 @@ const Calendar: React.FC<CalendarProps> = ({
             </button>
 
             {/* Calendar Header */}
-            <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">
+            <h2 className="text-2xl font-bold text-black mb-6 text-center">
               {monthNames[month]} {year}{' '}
             </h2>
 
@@ -160,7 +163,7 @@ const Calendar: React.FC<CalendarProps> = ({
               {weekDays.map((day) => (
                 <div
                   key={day}
-                  className="text-center font-semibold text-slate-600 text-sm py-2"
+                  className="text-center font-semibold text-black text-sm py-2"
                 >
                   {day}
                 </div>

@@ -119,7 +119,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold text-slate-800 text-center mt-6 mb-6">
+      <h2 className="text-3xl font-bold text-center mt-6 mb-6">
         {appleName} – {appleDate}
       </h2>
 
@@ -135,7 +135,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   key={level}
                   points={points}
                   fill="none"
-                  stroke="#cbd5e1"
+                  className="dark:stroke-white stroke-black"
                   strokeWidth="1"
                 />
               );
@@ -153,7 +153,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   y1="150"
                   x2={x}
                   y2={y}
-                  stroke="#cbd5e1"
+                  className="dark:stroke-white stroke-black"
                   strokeWidth="1"
                 />
               );
@@ -163,7 +163,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
             <polygon
               points={basePoints}
               fill="none"
-              stroke="#94a3b8"
+              className="dark:stroke-white stroke-black"
               strokeWidth="2"
             />
 
@@ -172,7 +172,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
               cy="150"
               r="180"
               fill="none"
-              stroke="#94a3b8"
+              className="dark:stroke-white stroke-black"
               strokeWidth="3"
             />
 
@@ -205,7 +205,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                     y={isBottomHalf ? y + 25 : y - 20}
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    className={`${key} text-sm font-semibold fill-slate-700 capitalize`}
+                    className={`${key} text-sm font-semibold fill-black dark:fill-white capitalize`}
                   >
                     {key}
                   </text>
@@ -241,8 +241,8 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
         {/* Description Section - 20% width on desktop */}
         {description && (
           <div className="w-full lg:w-1/4">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-slate-700 font-bold leading-relaxed whitespace-pre-line">
+            <div className="bg-white dark:bg-black p-6 rounded-lg shadow-md dark:shadow-white/20">
+              <p className="font-bold leading-relaxed whitespace-pre-line">
                 {imageUrl && (
                   <Image
                     className="mx-auto"

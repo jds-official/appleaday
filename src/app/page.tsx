@@ -39,7 +39,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl text-slate-600">Loading apples...</div>
+        <div className="text-xl">Loading apples...</div>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-8">
           An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
         </h1>
-        <div className="text-xl text-slate-600">COMING SOON.</div>
+        <div className="text-xl">COMING SOON.</div>
       </div>
     );
   }
