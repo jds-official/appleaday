@@ -45,8 +45,8 @@ export default function Home() {
   }
   if (appleData.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center flex-col">
-        <h1 className="text-4xl font-bold mb-8">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-8 mt-8">
           An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
         </h1>
         <div className="text-xl">COMING SOON.</div>
