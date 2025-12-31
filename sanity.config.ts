@@ -2,6 +2,7 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
+import { colorInput } from '@sanity/color-input'
 import { appleType } from './src/sanity/schemaTypes/apple'
 
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
   plugins: [
     structureTool(),
     visionTool(),
+    colorInput(),
   ],
 
   schema: {

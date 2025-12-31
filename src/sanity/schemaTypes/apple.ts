@@ -29,6 +29,17 @@ export const appleType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'accentColor',
+      title: 'Accent Color',
+      type: 'color',
+      options: {
+        disableAlpha: true, // Remove transparency option
+      },
+      initialValue: {
+        hex: '#ec1d25', // Default red
+      },
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
@@ -65,8 +76,8 @@ export const appleType = defineType({
           initialValue: 'C',
         },
         {
-          name: 'durability',
-          title: 'Durability',
+          name: 'tartness',
+          title: 'Tartness',
           type: 'string',
           options: {
             list: ['E', 'D', 'C', 'B', 'A', 'S'],
