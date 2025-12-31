@@ -39,7 +39,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
   appleName,
   appleDate,
   stats,
-  accentColor = '#ef4444',
+  accentColor,
   description,
   imageUrl,
 }) => {
@@ -135,7 +135,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   key={level}
                   points={points}
                   fill="none"
-                  className="dark:stroke-white stroke-black"
+                  className="dark:stroke-white stroke-slate-300"
                   strokeWidth="1"
                 />
               );
@@ -153,7 +153,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
                   y1="150"
                   x2={x}
                   y2={y}
-                  className="dark:stroke-white stroke-black"
+                  className="dark:stroke-white stroke-slate-300"
                   strokeWidth="1"
                 />
               );
@@ -163,7 +163,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
             <polygon
               points={basePoints}
               fill="none"
-              className="dark:stroke-white stroke-black"
+              className="dark:stroke-white stroke-slate-400"
               strokeWidth="2"
             />
 
@@ -172,7 +172,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
               cy="150"
               r="180"
               fill="none"
-              className="dark:stroke-white stroke-black"
+              className="dark:stroke-white stroke-slate-400"
               strokeWidth="3"
             />
 

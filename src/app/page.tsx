@@ -72,6 +72,7 @@ export default function Home() {
             appleName={currentApple.appleName}
             appleDate={displayDate(currentApple.date)}
             stats={currentApple.stats}
+            accentColor={currentApple.accentColor || '#ec1d25'}
             description={currentApple.description}
             imageUrl={currentApple.imageUrl}
           />

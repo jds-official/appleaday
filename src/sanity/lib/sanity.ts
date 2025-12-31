@@ -17,7 +17,8 @@ export async function getApples() {
       "slug": slug.current,
       description,
       stats,
-      "imageUrl": image.asset->url
+      "imageUrl": image.asset->url,
+      "accentColor": accentColor.hex
     }
   `)
 }

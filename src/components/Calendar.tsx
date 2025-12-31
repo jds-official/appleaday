@@ -11,6 +11,7 @@ export type AppleDay = {
   stats: AppleStats;
   description?: string;
   imageUrl?: string;
+  accentColor?: string;
 };
 
 interface CalendarProps {
