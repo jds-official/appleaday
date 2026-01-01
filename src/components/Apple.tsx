@@ -119,11 +119,11 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold text-center mt-6 mb-6">
+      <h2 className=" text-2xl md:text-3xl font-bold text-center mt-2 md:mt-6 md:mb-6">
         {appleName} – {appleDate}
       </h2>
 
-      <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
+      <div className="flex flex-col lg:flex-row gap-2 md:gap-8 justify-center items-center">
         {/* Chart Section - 80% width on desktop */}
         <div className="w-full lg:w-2/4 flex justify-center">
           <svg viewBox="-50 -50 400 400" className="w-full h-auto max-w-2xl">
@@ -241,7 +241,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
         {/* Description Section - 20% width on desktop */}
         {description && (
           <div className="w-full lg:w-1/4">
-            <div className="bg-white dark:bg-black p-6 rounded-lg shadow-md dark:shadow-white/20">
+            <div className="bg-white dark:bg-black px-4 pb-4 md:px-6 md:pb-6 rounded-lg shadow-md dark:shadow-white/20">
               {imageUrl && (
                 <Image
                   className="mx-auto"

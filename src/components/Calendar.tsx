@@ -105,7 +105,7 @@ const Calendar: React.FC<CalendarProps> = ({
       {/* Calendar Icon - Fixed in top-right corner */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="fixed top-6 right-6 z-50 bg-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110"
+        className="fixed top-2 right-2 md:top-6 md:right-6 z-50 bg-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110"
         aria-label="Toggle Calendar"
       >
         <svg
