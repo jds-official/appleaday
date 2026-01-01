@@ -119,7 +119,7 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
 
   return (
     <div className="w-full">
-      <h2 className=" text-2xl md:text-3xl font-bold text-center mt-2 md:mt-6 md:mb-6">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mt-2 md:mt-6 md:mb-6">
         {appleName} – {appleDate}
       </h2>
 
