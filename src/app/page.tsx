@@ -56,9 +56,10 @@ export default function Home() {
   return (
     <div>
       <main>
-        <div className="text-center my-8">
-          <h1 className="text-4xl font-bold">
-            An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
+        <div className="text-center mt-12 md:mt-8">
+          <h1 className="text-xl md:w-full md:text-4xl font-bold">
+            An Apple A Day
+            <br /> JDS Fun-A-Day Hudson Valley 2026
           </h1>
         </div>
         <Calendar
