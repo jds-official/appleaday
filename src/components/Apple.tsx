@@ -242,16 +242,16 @@ const AppleStatsChart: React.FC<AppleStatsChartProps> = ({
         {description && (
           <div className="w-full lg:w-1/4">
             <div className="bg-white dark:bg-black p-6 rounded-lg shadow-md dark:shadow-white/20">
-              <p className="font-bold leading-relaxed whitespace-pre-line">
-                {imageUrl && (
-                  <Image
-                    className="mx-auto"
-                    src={urlFor(imageUrl).width(300).quality(75).url()}
-                    alt={`Image of ${appleName} apple`}
-                    width={300}
-                    height={300}
-                  />
-                )}
+              {imageUrl && (
+                <Image
+                  className="mx-auto"
+                  src={urlFor(imageUrl).width(300).quality(75).url()}
+                  alt={`Image of ${appleName} apple`}
+                  width={300}
+                  height={300}
+                />
+              )}
+              <p className="font-bold leading-relaxed whitespace-pre-line mt-4">
                 {description}
               </p>
             </div>
