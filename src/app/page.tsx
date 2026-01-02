@@ -7,7 +7,9 @@ import Calendar, { AppleDay } from '@/components/Calendar';
 import { getApples } from '@/sanity/lib/sanity';
 
 export default function Home() {
-  const [selectedDate, setSelectedDate] = useState<string>('2026-01-01');
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    return new Date().toISOString().split('T')[0];
+  });
   const [appleData, setAppleData] = useState<AppleDay[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,11 +18,6 @@ export default function Home() {
       try {
         const apples = await getApples();
         setAppleData(apples);
-
-        // Set first apple as default if available
-        if (apples.length > 0) {
-          setSelectedDate(apples[0].date);
-        }
       } catch (error) {
         console.error('Error fetching apples:', error);
       } finally {
