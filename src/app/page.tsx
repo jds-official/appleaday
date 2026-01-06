@@ -40,13 +40,21 @@ export default function Home() {
       </div>
     );
   }
-  if (appleData.length === 0) {
+  if (!currentApple) {
     return (
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-8 mt-8">
           An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
         </h1>
-        <div className="text-xl">COMING SOON.</div>
+        <div className="text-xl">
+          No apple posted yet today! Check back later or use the calendar to
+          browse previous apples.
+        </div>
+        <Calendar
+          appleData={appleData}
+          currentDate={selectedDate}
+          onDateSelect={setSelectedDate}
+        />
       </div>
     );
   }
