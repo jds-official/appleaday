@@ -1,6 +1,5 @@
 // src/app/page.tsx
 'use client';
-
 import { useState, useEffect } from 'react';
 import Apple from '@/components/Apple';
 import Calendar, { AppleDay } from '@/components/Calendar';
@@ -18,6 +17,20 @@ export default function Home() {
       try {
         const apples = await getApples();
         setAppleData(apples);
+
+        // Check if there's an apple for today
+        const today = new Date().toISOString().split('T')[0];
+        const todayApple = apples.find(
+          (apple: AppleDay) => apple.date === today
+        );
+
+        // If no apple for today, default to the most recent apple
+        if (!todayApple && apples.length > 0) {
+          // Apples are already sorted by date (order(date asc) in query)
+          // So the last apple is the most recent
+          const mostRecentApple = apples[apples.length - 1];
+          setSelectedDate(mostRecentApple.date);
+        }
       } catch (error) {
         console.error('Error fetching apples:', error);
       } finally {
@@ -29,10 +42,12 @@ export default function Home() {
 
   // Find the apple data for the selected date
   const currentApple = appleData.find((apple) => apple.date === selectedDate);
+
   const displayDate = (dateString: string) => {
     const [year, month, day] = dateString.split('-');
     return `${month}/${day}/${year}`;
   };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,24 +55,18 @@ export default function Home() {
       </div>
     );
   }
-  if (!currentApple) {
+
+  if (appleData.length === 0) {
     return (
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-8 mt-8">
-          An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
+          An Apple A Day – JDS Fun-A-Day Hudson Valley 2026
         </h1>
-        <div className="text-xl">
-          No apple posted yet today! Check back later or use the calendar to
-          browse previous apples.
-        </div>
-        <Calendar
-          appleData={appleData}
-          currentDate={selectedDate}
-          onDateSelect={setSelectedDate}
-        />
+        <div className="text-xl">COMING SOON.</div>
       </div>
     );
   }
+
   return (
     <div>
       <main>
@@ -71,7 +80,6 @@ export default function Home() {
           currentDate={selectedDate}
           onDateSelect={setSelectedDate}
         />
-
         {currentApple && (
           <Apple
             appleName={currentApple.appleName}
