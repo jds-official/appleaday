@@ -42,21 +42,19 @@ export default function Home() {
   useEffect(() => {
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartTime = 0;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Find current apple index
       const currentIndex = appleData.findIndex(
         (apple) => apple.date === selectedDate
       );
       if (currentIndex === -1) return;
 
       if (e.key === 'ArrowLeft') {
-        // Go to previous apple (earlier date)
         if (currentIndex > 0) {
           setSelectedDate(appleData[currentIndex - 1].date);
         }
       } else if (e.key === 'ArrowRight') {
-        // Go to next apple (later date)
         if (currentIndex < appleData.length - 1) {
           setSelectedDate(appleData[currentIndex + 1].date);
         }
@@ -65,10 +63,16 @@ export default function Home() {
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartTime = Date.now();
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
       touchEndX = e.changedTouches[0].screenX;
+      const touchDuration = Date.now() - touchStartTime;
+
+      // Ignore if touch was too long (likely a tap/scroll, not a swipe)
+      if (touchDuration > 500) return;
+
       handleSwipe();
     };
 
@@ -78,17 +82,17 @@ export default function Home() {
       );
       if (currentIndex === -1) return;
 
-      const swipeThreshold = 50; // Minimum distance for a swipe
+      const swipeThreshold = 50;
       const diff = touchStartX - touchEndX;
 
       if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
-          // Swiped left - go to next apple (later date)
+          // Swiped left - go to next apple
           if (currentIndex < appleData.length - 1) {
             setSelectedDate(appleData[currentIndex + 1].date);
           }
         } else {
-          // Swiped right - go to previous apple (earlier date)
+          // Swiped right - go to previous apple
           if (currentIndex > 0) {
             setSelectedDate(appleData[currentIndex - 1].date);
           }
