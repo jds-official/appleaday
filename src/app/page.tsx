@@ -159,7 +159,7 @@ export default function Home() {
             />
           </div>
         )}{' '}
-        <p className="text-center text-md mt-8 mb-12 mx-4 md:mx-0">
+        <p className="text-center text-md mt-8 mb-4 mx-4 md:mx-0">
           Use the arrow keys or swipe to navigate between apples!
         </p>
         <p className="text-center text-xs">
