@@ -6,9 +6,7 @@ import Calendar, { AppleDay } from '@/components/Calendar';
 import { getApples } from '@/sanity/lib/sanity';
 
 export default function Home() {
-  const [selectedDate, setSelectedDate] = useState<string>(() => {
-    return new Date().toISOString().split('T')[0];
-  });
+  const [selectedDate, setSelectedDate] = useState<string>('2026-01-01');
   const [appleData, setAppleData] = useState<AppleDay[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,18 +15,6 @@ export default function Home() {
       try {
         const apples = await getApples();
         setAppleData(apples);
-        // Check if there's an apple for today
-        const today = new Date().toISOString().split('T')[0];
-        const todayApple = apples.find(
-          (apple: AppleDay) => apple.date === today
-        );
-        // If no apple for today, default to the most recent apple
-        if (!todayApple && apples.length > 0) {
-          // Apples are already sorted by date (order(date asc) in query)
-          // So the last apple is the most recent
-          const mostRecentApple = apples[apples.length - 1];
-          setSelectedDate(mostRecentApple.date);
-        }
       } catch (error) {
         console.error('Error fetching apples:', error);
       } finally {
@@ -46,7 +32,7 @@ export default function Home() {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       const currentIndex = appleData.findIndex(
-        (apple) => apple.date === selectedDate
+        (apple) => apple.date === selectedDate,
       );
       if (currentIndex === -1) return;
 
@@ -78,7 +64,7 @@ export default function Home() {
 
     const handleSwipe = () => {
       const currentIndex = appleData.findIndex(
-        (apple) => apple.date === selectedDate
+        (apple) => apple.date === selectedDate,
       );
       if (currentIndex === -1) return;
 
@@ -165,6 +151,9 @@ export default function Home() {
         )}{' '}
         <p className="text-center text-md mt-8 mb-4 mx-4 md:mx-0">
           Use the arrow keys or swipe to navigate between apples!
+          <br />
+          Now that January is over, we default to 01/01/2026. I hope this apple
+          journey rocks you to your core! I know it did for me :)
         </p>
         <p className="text-center text-xs">
           This was made in January 2026 by&nbsp;
